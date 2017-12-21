@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1513885289 source:c:\c_projects\clasificacion\clasificacion\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
