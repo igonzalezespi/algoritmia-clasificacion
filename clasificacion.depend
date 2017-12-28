@@ -4,3 +4,22 @@
 	<stdlib.h>
 	<windows.h>
 
+1514487308 source:c:\c_projects\clasificacion\bubble_sort.c
+	<stdio.h>
+	<stdlib.h>
+	"utils.h"
+	"bubble_sort.h"
+
+1514488194 c:\c_projects\clasificacion\utils.h
+
+1514486771 c:\c_projects\clasificacion\bubble_sort.h
+
+1514488181 source:c:\c_projects\clasificacion\main.c
+	"utils.h"
+	"bubble_sort.h"
+
+1514489286 source:c:\c_projects\clasificacion\utils.c
+	<stdio.h>
+	<stdlib.h>
+	"utils.h"
+
