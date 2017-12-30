@@ -4,7 +4,7 @@
 
 void intercambia(int *a, int *b);
 
-void imprime_resultados(double comparaciones, double intercambios);
+void imprime_resultados(char titulo[], double comparaciones, double intercambios, double interval);
 
 void lee_fichero(char nombre[], int enteros[]);
 void escribe_fichero(char nombre[], int enteros[], int n);

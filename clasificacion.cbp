@@ -38,10 +38,18 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="quick_sort.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="quick_sort.h" />
 		<Unit filename="selection_sort.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="selection_sort.h" />
+		<Unit filename="shell_sort.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="shell_sort.h" />
 		<Unit filename="utils.c">
 			<Option compilerVar="CC" />
 		</Unit>

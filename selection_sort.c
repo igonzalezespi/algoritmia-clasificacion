@@ -4,23 +4,41 @@
 #include "utils.h"
 #include "selection_sort.h"
 
-void selection_sort(int arr[], int n, double* comparaciones, double* intercambios) {
+void selection_normal(int arr[], int n, double* comparaciones, double* intercambios) {
   int i, j, min_idx;
 
-  // One by one move boundary of unsorted subarray
   for (i = 0; i < n-1; i++) {
-    // Find the minimum element in unsorted array
+    // Buscamos el elemento más pequeño en el array desordenado
     min_idx = i;
     for (j = i+1; j < n; j++) {
+      *comparaciones += 1;
       if (arr[j] < arr[min_idx]) {
         min_idx = j;
       }
     }
 
-    // Swap the found minimum element with the first element
+    // Intercambiamos el elemento más pequeño con el primero, sean o no iguales
+    *intercambios += 1;
     intercambia(&arr[min_idx], &arr[i]);
   }
 }
 
-void selection_sort(int arr[], int n, double* comparaciones, double* intercambios) {
+void selection_mejorado(int arr[], int n, double* comparaciones, double* intercambios) {
+  int i, j, min_idx;
+
+  for (i = 0; i < n-1; i++) {
+    // Buscamos el elemento más pequeño en el array desordenado
+    min_idx = i;
+    for (j = i+1; j < n; j++) {
+      *comparaciones += 1;
+      if (arr[j] < arr[min_idx]) {
+        min_idx = j;
+      }
+    }
+    if (min_idx != i) {
+      // Intercambiamos el elemento más pequeño con el primero, sean o no iguales
+      *intercambios += 1;
+      intercambia(&arr[min_idx], &arr[i]);
+    }
+  }
 }

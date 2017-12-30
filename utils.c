@@ -9,9 +9,12 @@ void intercambia(int* a, int* b) {
   *b = temp;
 }
 
-void imprime_resultados(double comparaciones, double intercambios) {
+void imprime_resultados(char titulo[], double comparaciones, double intercambios, double performance) {
+  printf("###### %s ######\n", titulo);
   printf("Comparaciones: %.0lf\n", comparaciones);
   printf("Intercambios:  %.0lf\n", intercambios);
+  printf("Rendimiento: %d s y %d ms\n", (int)performance/1000, (int)performance%1000);
+  printf("\n");
 }
 
 void lee_fichero(char nombre[], int enteros[]) {
