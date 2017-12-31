@@ -4,7 +4,7 @@
 	<stdlib.h>
 	<windows.h>
 
-1514716176 source:c:\c_projects\clasificacion\bubble_sort.c
+1514724624 source:c:\c_projects\clasificacion\bubble_sort.c
 	<stdio.h>
 	<stdlib.h>
 	"utils.h"
@@ -14,7 +14,7 @@
 
 1514625614 c:\c_projects\clasificacion\bubble_sort.h
 
-1514720521 source:c:\c_projects\clasificacion\main.c
+1514724496 source:c:\c_projects\clasificacion\main.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
