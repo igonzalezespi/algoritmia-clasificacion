@@ -38,6 +38,10 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="perf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="perf.h" />
 		<Unit filename="quick_sort.c">
 			<Option compilerVar="CC" />
 		</Unit>

@@ -4,17 +4,26 @@
 #include "utils.h"
 
 void intercambia(int* a, int* b) {
-  int temp = *a;
-  *a = *b;
-  *b = temp;
+  if (a != b) {
+    *a ^= *b;
+    *b ^= *a;
+    *a ^= *b;
+  }
 }
 
-void imprime_resultados(char titulo[], double comparaciones, double intercambios, double performance) {
-  printf("###### %s ######\n", titulo);
-  printf("Comparaciones: %.0lf\n", comparaciones);
-  printf("Intercambios:  %.0lf\n", intercambios);
-  printf("Rendimiento: %d s y %d ms\n", (int)performance/1000, (int)performance%1000);
+void imprime_resultados(char titulo[], resultados_ordenacion resultados) {
+  printf("####### %s ####### \n", titulo);
+  printf(" -- Resultados teoricos \n");
+  printf("    Comparaciones (mejor/peor): %.0lf / %.0lf \n", resultados.comparaciones_teoricas_mejor, resultados.comparaciones_teoricas_peor);
+  printf("    Intercambios (mejor/peor):  %.0lf / %.0lf \n", resultados.intercambios_teoricos_mejor, resultados.intercambios_teoricos_peor);
   printf("\n");
+  printf(" -- Resultados practicos \n");
+  printf("    Comparaciones: %.0lf \n", resultados.comparaciones_practicas);
+  printf("    Intercambios:  %.0lf \n", resultados.intercambios_practicos);
+  printf("\n");
+  printf(" -- Rendimiento \n");
+  printf("    %d s y %d ms\n", (int)resultados.rendimiento/1000, (int)resultados.rendimiento%1000);
+  printf("\n\n");
 }
 
 void lee_fichero(char nombre[], int enteros[]) {

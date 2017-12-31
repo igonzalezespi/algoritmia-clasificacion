@@ -4,41 +4,41 @@
 #include "utils.h"
 #include "selection_sort.h"
 
-void selection_normal(int arr[], int n, double* comparaciones, double* intercambios) {
-  int i, j, min_idx;
+void selection_normal(int array[], int tam, double* comparaciones, double* intercambios) {
+  int i, j, pos;
 
-  for (i = 0; i < n-1; i++) {
+  for (i = 0; i < tam-1; i++) {
     // Buscamos el elemento más pequeño en el array desordenado
-    min_idx = i;
-    for (j = i+1; j < n; j++) {
+    pos = i;
+    for (j = i+1; j < tam; j++) {
       *comparaciones += 1;
-      if (arr[j] < arr[min_idx]) {
-        min_idx = j;
+      if (array[j] < array[pos]) {
+        pos = j;
       }
     }
-
     // Intercambiamos el elemento más pequeño con el primero, sean o no iguales
     *intercambios += 1;
-    intercambia(&arr[min_idx], &arr[i]);
+    intercambia(&array[pos], &array[i]);
   }
 }
 
-void selection_mejorado(int arr[], int n, double* comparaciones, double* intercambios) {
-  int i, j, min_idx;
+void selection_mejorado(int array[], int tam, double* comparaciones, double* intercambios) {
+  int i, j, pos;
 
-  for (i = 0; i < n-1; i++) {
+  for (i = 0; i < tam-1; i++) {
     // Buscamos el elemento más pequeño en el array desordenado
-    min_idx = i;
-    for (j = i+1; j < n; j++) {
+    pos = i;
+    for (j = i+1; j < tam; j++) {
       *comparaciones += 1;
-      if (arr[j] < arr[min_idx]) {
-        min_idx = j;
+      if (array[j] < array[pos]) {
+        pos = j;
       }
     }
-    if (min_idx != i) {
+    *comparaciones += 1;
+    if (pos != i) {
       // Intercambiamos el elemento más pequeño con el primero, sean o no iguales
       *intercambios += 1;
-      intercambia(&arr[min_idx], &arr[i]);
+      intercambia(&array[pos], &array[i]);
     }
   }
 }

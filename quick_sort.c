@@ -9,24 +9,24 @@ int medio(int ini, int fin) {
   return (ini + fin) / 2; // Al convertirlo en un INT lo redondea hacia abajo automáticamente
 }
 
-int mediana(int a[], int ini, int fin, double* comparaciones, double* intercambios) {
+int mediana(int array[], int ini, int fin, double* comparaciones, double* intercambios) {
   int temp[3];
   int med = medio(ini, fin);
-  temp[0] = a[ini];
-  temp[1] = a[med];
-  temp[2] = a[fin];
+  temp[0] = array[ini];
+  temp[1] = array[med];
+  temp[2] = array[fin];
   bubble_mejorado(temp, 3, comparaciones, intercambios);
   comparaciones += 1; // Vamos a comparar, así que aumentamos la variable
-  if (temp[1] == a[ini]) {
+  if (temp[1] == array[ini]) {
     return ini;
-  } else if (temp[1] == a[med]) {
+  } else if (temp[1] == array[med]) {
     return med;
   } else {
     return fin;
   }
 }
 
-void quick_sort(int a[], int ini, int fin, int tipo, double* comparaciones, double* intercambios) {
+void quick_sort(int array[], int ini, int fin, int tipo, double* comparaciones, double* intercambios) {
   int i, j, pivote, pos;
 
   // Caso vector con 1 solo número --> No hacer nada
@@ -37,9 +37,9 @@ void quick_sort(int a[], int ini, int fin, int tipo, double* comparaciones, doub
   *comparaciones += 1;
   if(ini+1 == fin) {
     *comparaciones += 1;
-    if(a[ini] > a[fin]) {  // No están ordenados los dos números, intercambiar
+    if(array[ini] > array[fin]) {  // No están ordenados los dos números, intercambiar
       *intercambios += 1;
-      intercambia(&a[ini], &a[fin]);
+      intercambia(&array[ini], &array[fin]);
     }
     return;
   }
@@ -55,29 +55,29 @@ void quick_sort(int a[], int ini, int fin, int tipo, double* comparaciones, doub
     pos = (rand() % (fin - ini)) + ini;
   } else { // tipo == 2
     // Pivote --> La posición mediana
-    pos = mediana(a, ini, fin, comparaciones, intercambios); // Este método puede hacer comparaciones e intercambios adicionales
+    pos = mediana(array, ini, fin, comparaciones, intercambios); // Este método puede hacer comparaciones e intercambios adicionales
   }
 
   // Intercambiar pivote por el último elemento
   *intercambios += 1;
-  intercambia(&a[pos], &a[fin]);
-  pivote=a[fin];
+  intercambia(&array[pos], &array[fin]);
+  pivote=array[fin];
 
   // empezamos la particion
   for(i=ini,j=fin-1;;) {
-    while((i <= fin-1) && (a[i]<pivote)) {
-      *comparaciones += 1;
+    while((i <= fin-1) && (array[i]<pivote)) {
+      *comparaciones += 2;
       i++;
     }
-    while((j >= ini) && (pivote <a[j])) {
-      *comparaciones += 1;
+    while((j >= ini) && (pivote <array[j])) {
+      *comparaciones += 2;
       j--;
     }
 
     *comparaciones += 1;
     if(i<j) { // Todavía no se han intercambiado los índices, intercambiar números
       *intercambios += 1;
-      intercambia(&a[i], &a[j]);
+      intercambia(&array[i], &array[j]);
       i++;
       j--;
     } else  {// Se han intercambiando los índices, fin de la particion
@@ -87,22 +87,22 @@ void quick_sort(int a[], int ini, int fin, int tipo, double* comparaciones, doub
 
   //colocación del pivote en su sitio
   *intercambios += 1;
-  intercambia(&a[i], &a[fin]);
+  intercambia(&array[i], &array[fin]);
   //termina particion; //llamadas recursivas
-  quick_sort(a, ini, i-1, tipo, comparaciones, intercambios);  // Vector de la izquierda del pivote
-  quick_sort(a, i+1, fin, tipo, comparaciones, intercambios);  // Vector de la derecha del pivote
+  quick_sort(array, ini, i-1, tipo, comparaciones, intercambios);  // Vector de la izquierda del pivote
+  quick_sort(array, i+1, fin, tipo, comparaciones, intercambios);  // Vector de la derecha del pivote
 }
 
 /////////////
 
-void quick_sort_medio(int a[], int ini, int fin, double* comparaciones, double* intercambios) {
-  quick_sort(a, ini, fin, 0, comparaciones, intercambios);
+void quick_sort_medio(int array[], int ini, int fin, double* comparaciones, double* intercambios) {
+  quick_sort(array, ini, fin, 0, comparaciones, intercambios);
 }
 
-void quick_sort_random(int a[], int ini, int fin, double* comparaciones, double* intercambios) {
-  quick_sort(a, ini, fin, 1, comparaciones, intercambios);
+void quick_sort_random(int array[], int ini, int fin, double* comparaciones, double* intercambios) {
+  quick_sort(array, ini, fin, 1, comparaciones, intercambios);
 }
 
-void quick_sort_mediana(int a[], int ini, int fin, double* comparaciones, double* intercambios) {
-  quick_sort(a, ini, fin, 2, comparaciones, intercambios);
+void quick_sort_mediana(int array[], int ini, int fin, double* comparaciones, double* intercambios) {
+  quick_sort(array, ini, fin, 2, comparaciones, intercambios);
 }
