@@ -4,63 +4,73 @@
 	<stdlib.h>
 	<windows.h>
 
-1514724624 source:c:\c_projects\clasificacion\bubble_sort.c
+1515432136 source:c:\c_projects\clasificacion\bubble_sort.c
 	<stdio.h>
 	<stdlib.h>
 	"utils.h"
 	"bubble_sort.h"
 
-1514718433 c:\c_projects\clasificacion\utils.h
+1515529013 c:\c_projects\clasificacion\utils.h
 
-1514625614 c:\c_projects\clasificacion\bubble_sort.h
+1514486771 c:\c_projects\clasificacion\bubble_sort.h
 
-1514724496 source:c:\c_projects\clasificacion\main.c
+1515529005 source:c:\c_projects\clasificacion\main.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
 	<windows.h>
 	<math.h>
 	"utils.h"
+	"menu.h"
 	"perf.h"
 	"bubble_sort.h"
 	"selection_sort.h"
 	"shell_sort.h"
 	"quick_sort.h"
 
-1514718851 source:c:\c_projects\clasificacion\utils.c
+1515527730 source:c:\c_projects\clasificacion\utils.c
 	<stdio.h>
 	<stdlib.h>
 	"utils.h"
 
-1514715500 source:c:\c_projects\clasificacion\quick_sort.c
+1515432136 source:c:\c_projects\clasificacion\quick_sort.c
 	<stdio.h>
 	<stdlib.h>
 	"utils.h"
 	"bubble_sort.h"
 	"quick_sort.h"
 
-1514640962 c:\c_projects\clasificacion\quick_sort.h
+1515432136 c:\c_projects\clasificacion\quick_sort.h
 
-1514715828 source:c:\c_projects\clasificacion\selection_sort.c
+1515432136 source:c:\c_projects\clasificacion\selection_sort.c
 	<stdio.h>
 	<stdlib.h>
 	"utils.h"
 	"selection_sort.h"
 
-1514641857 c:\c_projects\clasificacion\selection_sort.h
+1514490081 c:\c_projects\clasificacion\selection_sort.h
 
-1514715975 source:c:\c_projects\clasificacion\shell_sort.c
+1515432136 source:c:\c_projects\clasificacion\shell_sort.c
 	<stdio.h>
 	<stdlib.h>
 	<math.h>
 	"utils.h"
 	"shell_sort.h"
 
-1514630199 c:\c_projects\clasificacion\shell_sort.h
+1515432136 c:\c_projects\clasificacion\shell_sort.h
 
-1514649725 c:\c_projects\clasificacion\perf.h
+1515432136 c:\c_projects\clasificacion\perf.h
 
-1514650513 source:c:\c_projects\clasificacion\perf.c
+1515432136 source:c:\c_projects\clasificacion\perf.c
 	<windows.h>
 	"perf.h"
+
+1515528215 source:c:\c_projects\clasificacion\menu.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	"menu.h"
+	"utils.h"
+
+1515517953 c:\c_projects\clasificacion\menu.h
 

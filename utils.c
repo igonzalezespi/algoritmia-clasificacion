@@ -1,7 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "utils.h"
+
+// Limpia la pantalla
+void cls() {
+  system("cls");
+}
+
+// Pause la aplicación
+void pause() {
+  system("pause");
+}
 
 void intercambia(int* a, int* b) {
   if (a != b) {
@@ -27,7 +38,11 @@ void imprime_resultados(char titulo[], resultados_ordenacion resultados) {
 }
 
 void lee_fichero(char nombre[], int enteros[]) {
-  FILE *archivo = fopen(nombre, "r");
+  char _nombre[100];
+  strcpy(_nombre, nombre);
+  strcat(_nombre, ".txt");
+
+  FILE *archivo = fopen(_nombre, "r");
 
   int i=0;
   int num;
@@ -40,7 +55,11 @@ void lee_fichero(char nombre[], int enteros[]) {
 
 void escribe_fichero(char nombre[], int enteros[], int n) {
   int i;
-  FILE *archivo = fopen(nombre, "w");
+  char _nombre[100];
+  strcpy(_nombre, nombre);
+  strcat(_nombre, ".txt");
+
+  FILE *archivo = fopen(_nombre, "w");
 
   for (i = 0; i<n; i++) {
     fprintf(archivo, "%d", enteros[i]);

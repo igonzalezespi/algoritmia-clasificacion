@@ -12,6 +12,9 @@ typedef struct resultados_ordenacion {
   double rendimiento;
 } resultados_ordenacion;
 
+void cls(void);
+void pause(void);
+
 void intercambia(int *a, int *b);
 
 void imprime_resultados(char titulo[], resultados_ordenacion resultado);

@@ -5,6 +5,7 @@
 #include <math.h>
 
 #include "utils.h"
+#include "menu.h"
 #include "perf.h"
 #include "bubble_sort.h"
 #include "selection_sort.h"
@@ -12,178 +13,148 @@
 #include "quick_sort.h"
 
 int main() {
-  int tam = 50000;
-  int array[tam];
-  char fichero[27] = "numeros50000_sort_desc.txt";
-  resultados_ordenacion resultados;
-
   srand(time(NULL)); // Semilla para los valores aleatorios. Solo se llama una vez.
 
+  // Menú para elegir un algoritmo
+  int algoritmo = menu();
+  while (algoritmo != 0) {
+    if (algoritmo >= 1 && algoritmo <= 8) {
+      cls();
+      int i;
+      for (i = 0; i<3; i++) { // Por cada fichero (3)
+        char titulo[50];
+        char sufijo_fichero[50];
+        int tam;
+        char c_tam[50];
+        if (i == 0) {
+          tam = 50000;
+          strcpy(c_tam, "50000");
+        } else if (i == 1) {
+          tam = 100000;
+          strcpy(c_tam, "100000");
+        } else {
+          tam = 200000;
+          strcpy(c_tam, "200000");
+        }
 
-  // Bubble normal
-  resultados.comparaciones_practicas = 0;
-  resultados.intercambios_practicos = 0;
+        int array[tam];
 
-  lee_fichero(fichero, array);
+        char fichero[100];
+        strcpy(fichero, "numeros");
+        strcat(fichero, c_tam);
 
-  empieza_rendimiento();
-  bubble_normal(array, tam, &resultados.comparaciones_practicas, &resultados.intercambios_practicos);
+        printf("Leyendo fichero %s.txt...\n", fichero);
 
-  resultados.rendimiento = termina_rendimiento();
-  resultados.comparaciones_teoricas_mejor = (double)((pow(tam, 2) - tam) / 2);
-  resultados.comparaciones_teoricas_peor = (double)((pow(tam, 2) - tam) / 2);
-  resultados.intercambios_teoricos_mejor = (double)(0);
-  resultados.intercambios_teoricos_peor = (double)((pow(tam, 2) - tam) / 2);
+        resultados_ordenacion resultados;
+        resultados.comparaciones_practicas = 0;
+        resultados.intercambios_practicos = 0;
 
-  imprime_resultados("Bubble normal", resultados);
+        lee_fichero(fichero, array);
 
-  escribe_fichero("numeros50000_bubble_normal.txt", array, tam);
+        printf("Ejecutando algoritmo...\n\n");
+        empieza_rendimiento();
 
+        switch(algoritmo) {
+        case 1: // Burbuja normal
+          strcpy(titulo, "Burbuja normal");
+          strcpy(sufijo_fichero, "burbuja_normal");
+          bubble_normal(array, tam, &resultados.comparaciones_practicas, &resultados.intercambios_practicos);
 
-  // Bubble mejorado
-  resultados.comparaciones_practicas = 0;
-  resultados.intercambios_practicos = 0;
+          resultados.comparaciones_teoricas_mejor = (double)((pow(tam, 2) - tam) / 2);
+          resultados.comparaciones_teoricas_peor = (double)((pow(tam, 2) - tam) / 2);
+          resultados.intercambios_teoricos_mejor = (double)(0);
+          resultados.intercambios_teoricos_peor = (double)((pow(tam, 2) - tam) / 2);
+          break;
+        case 2: // Burbuja mejorado
+          strcpy(titulo, "Burbuja mejorado");
+          strcpy(sufijo_fichero, "burbuja_mejorado");
+          bubble_mejorado(array, tam, &resultados.comparaciones_practicas, &resultados.intercambios_practicos);
 
-  lee_fichero(fichero, array);
+          resultados.rendimiento = termina_rendimiento();
+          resultados.comparaciones_teoricas_mejor = (double)(tam - 1);
+          resultados.comparaciones_teoricas_peor = (double)((pow(tam, 2) - tam) / 2);
+          resultados.intercambios_teoricos_mejor = 0;
+          resultados.intercambios_teoricos_peor = (double)((pow(tam, 2) - tam) / 2);
+          break;
+        case 3: // Selección directa normal
+          strcpy(titulo, "Seleccion normal");
+          strcpy(sufijo_fichero, "seleccion_normal");
+          selection_normal(array, tam, &resultados.comparaciones_practicas, &resultados.intercambios_practicos);
 
-  empieza_rendimiento();
-  bubble_mejorado(array, tam, &resultados.comparaciones_practicas, &resultados.intercambios_practicos);
+          resultados.rendimiento = termina_rendimiento();
+          resultados.comparaciones_teoricas_mejor = (double)((pow(tam, 2) - tam) / 2);
+          resultados.comparaciones_teoricas_peor = (double)((pow(tam, 2) - tam) / 2);
+          resultados.intercambios_teoricos_mejor = (double)((pow(tam, 2) - tam) / 2);
+          resultados.intercambios_teoricos_peor = (double)(tam - 1);
+          break;
+        case 4: // Selección directa mejorado
+          strcpy(titulo, "Seleccion mejorado");
+          strcpy(sufijo_fichero, "seleccion_mejorado");
+          selection_mejorado(array, tam, &resultados.comparaciones_practicas, &resultados.intercambios_practicos);
 
-  resultados.rendimiento = termina_rendimiento();
-  resultados.comparaciones_teoricas_mejor = (double)(tam - 1);
-  resultados.comparaciones_teoricas_peor = (double)((pow(tam, 2) - tam) / 2);
-  resultados.intercambios_teoricos_mejor = 0;
-  resultados.intercambios_teoricos_peor = (double)((pow(tam, 2) - tam) / 2);
+          resultados.rendimiento = termina_rendimiento();
+          resultados.comparaciones_teoricas_mejor = (double)((pow(tam, 2) - tam) / 2);
+          resultados.comparaciones_teoricas_peor = (double)((pow(tam, 2) - tam) / 2);
+          resultados.intercambios_teoricos_mejor = (double)((pow(tam, 2) - tam) / 2);
+          resultados.intercambios_teoricos_peor = (double)(tam - 1);
+          break;
+        case 5: // Shell
+          strcpy(titulo, "Shell");
+          strcpy(sufijo_fichero, "shell");
+          shell_sort(array, tam, &resultados.comparaciones_practicas, &resultados.intercambios_practicos);
 
-  imprime_resultados("Bubble mejorado", resultados);
+          resultados.rendimiento = termina_rendimiento();
+          resultados.comparaciones_teoricas_mejor = (double)((pow(tam, 2) - tam) / 2);
+          resultados.comparaciones_teoricas_peor = (double)((pow(tam, 2) - tam) / 2);
+          resultados.intercambios_teoricos_mejor = (double)((pow(tam, 2) - tam) / 2);
+          resultados.intercambios_teoricos_peor = (double)(tam - 1);
+          break;
+        case 6: // Quicksort (Medio)
+          strcpy(titulo, "Quicksort (Medio)");
+          strcpy(sufijo_fichero, "quicksort_medio");
+          quick_sort_medio(array, 0, tam - 1, &resultados.comparaciones_practicas, &resultados.intercambios_practicos);
 
-  escribe_fichero("numeros50000_bubble_mejorado.txt", array, tam);
+          resultados.rendimiento = termina_rendimiento();
+          resultados.comparaciones_teoricas_mejor = (double)((pow(tam, 2) - tam) / 2);
+          resultados.comparaciones_teoricas_peor = (double)((pow(tam, 2) - tam) / 2);
+          resultados.intercambios_teoricos_mejor = (double)((pow(tam, 2) - tam) / 2);
+          resultados.intercambios_teoricos_peor = (double)(tam - 1);
+          break;
+        case 7: // Quicksort (Aleatorio)
+          strcpy(titulo, "Quicksort (Aleatorio)");
+          strcpy(sufijo_fichero, "quicksort_aleatorio");
+          quick_sort_random(array, 0, tam - 1, &resultados.comparaciones_practicas, &resultados.intercambios_practicos);
 
+          resultados.rendimiento = termina_rendimiento();
+          resultados.comparaciones_teoricas_mejor = (double)((pow(tam, 2) - tam) / 2);
+          resultados.comparaciones_teoricas_peor = (double)((pow(tam, 2) - tam) / 2);
+          resultados.intercambios_teoricos_mejor = (double)((pow(tam, 2) - tam) / 2);
+          resultados.intercambios_teoricos_peor = (double)(tam - 1);
+          break;
+        case 8: // Quicksort (Mediana)
+          strcpy(titulo, "Quicksort (Mediana)");
+          strcpy(sufijo_fichero, "quicksort_mediana");
+          quick_sort_mediana(array, 0, tam - 1, &resultados.comparaciones_practicas, &resultados.intercambios_practicos);
 
+          resultados.rendimiento = termina_rendimiento();
+          resultados.comparaciones_teoricas_mejor = (double)((pow(tam, 2) - tam) / 2);
+          resultados.comparaciones_teoricas_peor = (double)((pow(tam, 2) - tam) / 2);
+          resultados.intercambios_teoricos_mejor = (double)((pow(tam, 2) - tam) / 2);
+          resultados.intercambios_teoricos_peor = (double)(tam - 1);
+          break;
+        }
 
-  // Selección directa normal
-  resultados.comparaciones_practicas = 0;
-  resultados.intercambios_practicos = 0;
+        resultados.rendimiento = termina_rendimiento();
 
-  lee_fichero(fichero, array);
+        imprime_resultados(titulo, resultados);
 
-  empieza_rendimiento();
-  selection_normal(array, tam, &resultados.comparaciones_practicas, &resultados.intercambios_practicos);
-
-  resultados.rendimiento = termina_rendimiento();
-  resultados.comparaciones_teoricas_mejor = (double)((pow(tam, 2) - tam) / 2);
-  resultados.comparaciones_teoricas_peor = (double)((pow(tam, 2) - tam) / 2);
-  resultados.intercambios_teoricos_mejor = (double)((pow(tam, 2) - tam) / 2);
-  resultados.intercambios_teoricos_peor = (double)(tam - 1);
-
-  imprime_resultados("Seleccion directa normal", resultados);
-
-  escribe_fichero("numeros50000_selection_normal.txt", array, tam);
-
-
-
-  // Selección directa mejorado
-  resultados.comparaciones_practicas = 0;
-  resultados.intercambios_practicos = 0;
-
-  lee_fichero(fichero, array);
-
-  empieza_rendimiento();
-  selection_mejorado(array, tam, &resultados.comparaciones_practicas, &resultados.intercambios_practicos);
-
-  resultados.rendimiento = termina_rendimiento();
-  resultados.comparaciones_teoricas_mejor = (double)((pow(tam, 2) - tam) / 2);
-  resultados.comparaciones_teoricas_peor = (double)(((pow(tam, 2) - tam) / 2) + tam - 1);
-  resultados.intercambios_teoricos_mejor = (double)((pow(tam, 2) - tam) / 2);
-  resultados.intercambios_teoricos_peor = (double)(tam - 1);
-
-  imprime_resultados("Seleccion directa mejorado", resultados);
-
-  escribe_fichero("numeros50000_selection_mejorado.txt", array, tam);
-
-
-
-  // Shell
-  resultados.comparaciones_practicas = 0;
-  resultados.intercambios_practicos = 0;
-
-  lee_fichero(fichero, array);
-
-  empieza_rendimiento();
-  shell_sort(array, tam, &resultados.comparaciones_practicas, &resultados.intercambios_practicos);
-
-  resultados.rendimiento = termina_rendimiento();
-  resultados.comparaciones_teoricas_mejor = (double)(pow(tam, 2));
-  resultados.comparaciones_teoricas_peor = (double)(pow(tam, 2));
-  resultados.intercambios_teoricos_mejor = (double)(pow(tam, 2));
-  resultados.intercambios_teoricos_peor = (double)(pow(tam, 2));
-
-  imprime_resultados("Shell", resultados);
-
-  escribe_fichero("numeros50000_shell_sort.txt", array, tam);
-
-
-
-  // Quicksort - medio
-  resultados.comparaciones_practicas = 0;
-  resultados.intercambios_practicos = 0;
-
-  lee_fichero(fichero, array);
-
-  empieza_rendimiento();
-  quick_sort_medio(array, 0, tam - 1, &resultados.comparaciones_practicas, &resultados.intercambios_practicos);
-
-  resultados.rendimiento = termina_rendimiento();
-  resultados.comparaciones_teoricas_mejor = (double)(pow(tam, 2));
-  resultados.comparaciones_teoricas_peor = (double)(pow(tam, 2));
-  resultados.intercambios_teoricos_mejor = (double)(pow(tam, 2));
-  resultados.intercambios_teoricos_peor = (double)(pow(tam, 2));
-
-  imprime_resultados("Quicksort - medio", resultados);
-
-  escribe_fichero("numeros50000_quick_sort_medio.txt", array, tam);
-
-
-
-  // Quicksort - random
-  resultados.comparaciones_practicas = 0;
-  resultados.intercambios_practicos = 0;
-
-  lee_fichero(fichero, array);
-
-  empieza_rendimiento();
-  quick_sort_random(array, 0, tam - 1, &resultados.comparaciones_practicas, &resultados.intercambios_practicos);
-
-  resultados.rendimiento = termina_rendimiento();
-  resultados.comparaciones_teoricas_mejor = (double)(pow(tam, 2));
-  resultados.comparaciones_teoricas_peor = (double)(pow(tam, 2));
-  resultados.intercambios_teoricos_mejor = (double)(pow(tam, 2));
-  resultados.intercambios_teoricos_peor = (double)(pow(tam, 2));
-
-  imprime_resultados("Quicksort - random", resultados);
-
-  escribe_fichero("numeros50000_quick_sort_random.txt", array, tam);
-
-
-
-  // Quicksort - mediana
-  resultados.comparaciones_practicas = 0;
-  resultados.intercambios_practicos = 0;
-
-  lee_fichero(fichero, array);
-
-  empieza_rendimiento();
-  quick_sort_mediana(array, 0, tam - 1, &resultados.comparaciones_practicas, &resultados.intercambios_practicos);
-
-  resultados.rendimiento = termina_rendimiento();
-  resultados.comparaciones_teoricas_mejor = (double)(pow(tam, 2));
-  resultados.comparaciones_teoricas_peor = (double)(pow(tam, 2));
-  resultados.intercambios_teoricos_mejor = (double)(pow(tam, 2));
-  resultados.intercambios_teoricos_peor = (double)(pow(tam, 2));
-
-  imprime_resultados("Quicksort - mediana", resultados);
-
-  escribe_fichero("numeros50000_quick_sort_mediana.txt", array, tam);
-
+        strcat(fichero, "_");
+        strcat(fichero, sufijo_fichero);
+        escribe_fichero(fichero, array, tam);
+      }
+      system("PAUSE");
+    }
+    algoritmo = menu();
+  }
   return 0;
 }
