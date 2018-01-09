@@ -73,7 +73,7 @@ int main() {
           resultados.rendimiento = termina_rendimiento();
           resultados.comparaciones_teoricas_mejor = (double)(tam - 1);
           resultados.comparaciones_teoricas_peor = (double)((pow(tam, 2) - tam) / 2);
-          resultados.intercambios_teoricos_mejor = 0;
+          resultados.intercambios_teoricos_mejor = (double)(0);
           resultados.intercambios_teoricos_peor = (double)((pow(tam, 2) - tam) / 2);
           break;
         case 3: // Selección directa normal
