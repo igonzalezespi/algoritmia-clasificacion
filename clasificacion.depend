@@ -10,11 +10,11 @@
 	"utils.h"
 	"bubble_sort.h"
 
-1515529013 c:\c_projects\clasificacion\utils.h
+1515779513 c:\c_projects\clasificacion\utils.h
 
 1514486771 c:\c_projects\clasificacion\bubble_sort.h
 
-1515529005 source:c:\c_projects\clasificacion\main.c
+1515785178 source:c:\c_projects\clasificacion\main.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
@@ -28,12 +28,13 @@
 	"shell_sort.h"
 	"quick_sort.h"
 
-1515527730 source:c:\c_projects\clasificacion\utils.c
+1515784203 source:c:\c_projects\clasificacion\utils.c
 	<stdio.h>
 	<stdlib.h>
+	<string.h>
 	"utils.h"
 
-1515432136 source:c:\c_projects\clasificacion\quick_sort.c
+1515784838 source:c:\c_projects\clasificacion\quick_sort.c
 	<stdio.h>
 	<stdlib.h>
 	"utils.h"
@@ -42,7 +43,7 @@
 
 1515432136 c:\c_projects\clasificacion\quick_sort.h
 
-1515432136 source:c:\c_projects\clasificacion\selection_sort.c
+1515784611 source:c:\c_projects\clasificacion\selection_sort.c
 	<stdio.h>
 	<stdlib.h>
 	"utils.h"
@@ -50,7 +51,7 @@
 
 1514490081 c:\c_projects\clasificacion\selection_sort.h
 
-1515432136 source:c:\c_projects\clasificacion\shell_sort.c
+1515784535 source:c:\c_projects\clasificacion\shell_sort.c
 	<stdio.h>
 	<stdlib.h>
 	<math.h>
@@ -61,11 +62,11 @@
 
 1515432136 c:\c_projects\clasificacion\perf.h
 
-1515432136 source:c:\c_projects\clasificacion\perf.c
+1515784944 source:c:\c_projects\clasificacion\perf.c
 	<windows.h>
 	"perf.h"
 
-1515528215 source:c:\c_projects\clasificacion\menu.c
+1515785202 source:c:\c_projects\clasificacion\menu.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>

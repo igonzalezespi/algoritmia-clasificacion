@@ -5,6 +5,7 @@
 #include "menu.h"
 #include "utils.h"
 
+// Muestra un menú simple con los distintos algoritmos a ejecutar. Devuelve un entero con la selección del usuario
 int menu() {
   char seleccion;
   int int_seleccion;
@@ -26,8 +27,8 @@ int menu() {
   printf("S. Salir\n");
   scanf(" %c", &seleccion);
 
-  if (seleccion == 'S') {
-    return -1;
+  if (toupper(seleccion) == 'S') {
+    return 0;
   }
   int_seleccion = seleccion - '0';
   return int_seleccion;

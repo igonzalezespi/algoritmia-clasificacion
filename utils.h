@@ -3,10 +3,8 @@
 
 
 typedef struct resultados_ordenacion {
-  double  comparaciones_teoricas_mejor;
-  double  comparaciones_teoricas_peor;
-  double  intercambios_teoricos_mejor;
-  double  intercambios_teoricos_peor;
+  double coste_teorico_mejor;
+  double coste_teorico_peor;
   double comparaciones_practicas;
   double intercambios_practicos;
   double rendimiento;

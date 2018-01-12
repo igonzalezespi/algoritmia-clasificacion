@@ -5,10 +5,12 @@
 #include "bubble_sort.h"
 #include "quick_sort.h"
 
+// Calcula el valor medio entre dos números enteros
 int medio(int ini, int fin) {
   return (ini + fin) / 2; // Al convertirlo en un INT lo redondea hacia abajo automáticamente
 }
 
+// Calcula la mediana, dada una muestra de tres elementos de un array dado
 int mediana(int array[], int ini, int fin, double* comparaciones, double* intercambios) {
   int temp[3];
   int med = medio(ini, fin);
@@ -26,15 +28,14 @@ int mediana(int array[], int ini, int fin, double* comparaciones, double* interc
   }
 }
 
+// Quick Sort genérico
 void quick_sort(int array[], int ini, int fin, int tipo, double* comparaciones, double* intercambios) {
   int i, j, pivote, pos;
 
   // Caso vector con 1 solo número --> No hacer nada
-  *comparaciones += 1;
   if(ini >= fin) return;
 
   // Caso vector con 2 números --> Comprobar si es necesario ordenarlos
-  *comparaciones += 1;
   if(ini+1 == fin) {
     *comparaciones += 1;
     if(array[ini] > array[fin]) {  // No están ordenados los dos números, intercambiar
@@ -63,14 +64,14 @@ void quick_sort(int array[], int ini, int fin, int tipo, double* comparaciones, 
   intercambia(&array[pos], &array[fin]);
   pivote=array[fin];
 
-  // empezamos la particion
+  // Empezamos la particion
   for(i=ini,j=fin-1;;) {
-    while((i <= fin-1) && (array[i]<pivote)) {
-      *comparaciones += 2;
+    while((i <= fin-1) && (array[i] < pivote)) {
+      *comparaciones += 1;
       i++;
     }
-    while((j >= ini) && (pivote <array[j])) {
-      *comparaciones += 2;
+    while((j >= ini) && (pivote < array[j])) {
+      *comparaciones += 1;
       j--;
     }
 

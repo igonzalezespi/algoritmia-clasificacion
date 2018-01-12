@@ -35,8 +35,7 @@ void selection_mejorado(int array[], int tam, double* comparaciones, double* int
       }
     }
     *comparaciones += 1;
-    if (pos != i) {
-      // Intercambiamos el elemento más pequeño con el primero, sean o no iguales
+    if (pos != i) { // Si son iguales no hacemos nada
       *intercambios += 1;
       intercambia(&array[pos], &array[i]);
     }

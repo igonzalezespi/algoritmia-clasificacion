@@ -5,6 +5,7 @@
 double PCFreq = 0.0;
 __int64 CounterStart = 0;
 
+// Inicia un contador que servirá para medir el rendimiento de algoritmos
 void empieza_rendimiento() {
   LARGE_INTEGER li;
   QueryPerformanceFrequency(&li);
@@ -13,6 +14,7 @@ void empieza_rendimiento() {
   CounterStart = li.QuadPart;
 }
 
+// Termina el contador iniciado por la función anterior
 double termina_rendimiento() {
   LARGE_INTEGER li;
   QueryPerformanceCounter(&li);
